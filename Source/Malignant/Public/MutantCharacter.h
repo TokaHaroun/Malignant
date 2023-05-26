@@ -34,17 +34,15 @@ public:
 	//Attack methods
 	virtual void LightAttack() override;
 	virtual void HeavyAttack() override;
+	virtual void OnDash() override;
 
 //Members
 public:
 
 	UPROPERTY(EditAnywhere, Category = Animation)
-		UAnimMontage* MutantAttackMontage;
-
-	UPROPERTY(EditAnywhere, Category = Animation)
 		TSubclassOf<UComboAttackComponent> AttackComponentClass;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		UComboAttackComponent* AttackComponent;
 
 //Methods

@@ -3,7 +3,7 @@
 
 
 #include "MutantCharacter.h"
-
+#include "DashComponent.h"
 #include "ComboAttackComponent.h"
 
 AMutantCharacter::AMutantCharacter()
@@ -23,7 +23,7 @@ void AMutantCharacter::BeginPlay()
 	}
 	if (AttackComponent)
 	{
-		AttackComponent->SetSkeletalMesh(GetMesh());
+		AttackComponent->SetSkeletalMeshes(GetMesh(), ThirdPersonBody);
 		AttackComponent->SetAttackMontage(MutantAttackMontage);
 	}
 }
@@ -55,4 +55,15 @@ void AMutantCharacter::HeavyAttack()
 {
 	if(AttackComponent)
 		AttackComponent->HeavyAttack();
+}
+
+void AMutantCharacter::OnDash()
+{
+	if (DashComponent && CharacterStats.CurrentStamina >= 10.0)
+	{
+		if (AttackComponent)
+		{
+			DashComponent->Dash(AttackComponent);
+		}
+	}
 }
